@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart O Care</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()">
+      <span class="slider round"></span>
+    </label>
+    <span>Dark Mode</span>
+  </div>
+
+  <div class="container">
+    <h1>❤️ Heart O Care Emergency Assistant</h1>
+    <p>Your quick-response assistant during heart-related emergencies. Input symptoms, get local help, and receive instant treatment advice.</p>
+
+    <div class="form-group">
+      <label for="patientName">Patient Name:</label>
+      <input id="patientName" placeholder="Enter patient's name">
+      <label for="age">Age:</label>
+      <input id="age" placeholder="Enter age" type="number">
+      <label for="symptom">Symptoms:</label>
+      <input id="symptom" placeholder="Enter symptom">
+      <button onclick="addSymptom()">Add Symptom</button>
+      <button onclick="resetSymptoms()">Reset</button>
+    </div>
+
+    <ul id="symptomList"></ul>
+    <div class="form-group">
+      <label for="severity">Severity:</label>
+      <select id="severity">
+        <option value="mild">Mild</option>
+        <option value="moderate">Moderate</option>
+        <option value="severe">Severe</option>
+      </select>
+      <label for="duration">Duration:</label>
+      <input id="duration" placeholder="Enter duration" type="text">
+    </div>
+    <div class="button-group">
+  <button onclick="addSymptom()" class="main-btn">Add Symptom</button>
+  <button onclick="findHelp()" class="main-btn">Find Help</button>
+  <button onclick="resetSymptoms()" class="main-btn danger">Reset</button>
+    </div>
+    <div class="form-group">
+      <label for="location">Your Location:</label>
+      <input id="location" placeholder="Enter your location">
+      <button onclick="getLocation()">📍 Get Current Location</button>
+
+    <button class="main-btn" onclick="findHelp()">🧭 Find Nearby Help</button>
+    <div id="map"></div>
+
+    <div class="form-group">
+      <button onclick="speakHelp()">🔊 Speak Instructions</button>
+      <label for="lang">Language:</label>
+      <select id="lang">
+        <option value="en-US">English</option>
+        <option value="hi-IN">Hindi</option>
+        <option value="bn-IN">Bengali</option>
+        <option value="ta-IN">Tamil</option>
+        <option value="mr-IN">Marathi</option>
+      </select>
+      <button onclick="window.print()">🖨️ Print Tips</button>
+      <button onclick="showSteps()">📋 View Treatment Steps</button>
+    </div>
+
+    <div class="tips">
+      <h3>🩺 Basic First-Aid Tips for Heart Emergencies</h3>
+      <ul>
+        <li>Stay calm and reassure the patient</li>
+        <li>Loosen tight clothing</li>
+        <li>Make the patient sit and rest</li>
+        <li>Chew and swallow an aspirin (if not allergic)</li>
+        <li>Call emergency services immediately</li>
+        <li>If unconscious and not breathing, begin CPR</li>
+      </ul>
+    </div>
+
+    <div class="checklist">
+      <h3>📌 Emergency Checklist</h3>
+      <ul>
+        <li><input type="checkbox"> Contact nearest hospital</li>
+        <li><input type="checkbox"> Keep emergency contact notified</li>
+        <li><input type="checkbox"> Prepare ID and health documents</li>
+        <li><input type="checkbox"> Monitor breathing and pulse</li>
+      </ul>
+    </div>
+
+    <div class="qr">
+      <h4>📱 Share This App</h4>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://your-app-url.com&size=100x100" alt="QR Code">
+    </div>
+  </div>
+
+  <div class="modal" id="stepsModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeSteps()">&times;</span>
+      <h2>🧾 Emergency Treatment Steps</h2>
+      <ol>
+        <li>🫀 Check pulse and breathing</li>
+        <li>📞 Call ambulance or emergency helpline</li>
+        <li>💊 Give aspirin if the patient is conscious and not allergic</li>
+        <li>🛌 Keep the patient calm, warm and rested</li>
+        <li>❤️‍🩹 Begin CPR if the patient is unresponsive and not breathing</li>
+        <li>🚑 Accompany the patient to hospital with medical records if possible</li>
+      </ol>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
